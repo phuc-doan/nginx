@@ -1,4 +1,4 @@
-## `Cấu hình nginx với php-fpm`
+## `Cấu hình nginx với php-fpm` ⚙⚙
 
 ![image](https://user-images.githubusercontent.com/83824403/162784870-3361b1c3-109e-4568-99ab-562849f54037.png)
 
@@ -9,23 +9,42 @@
 
 ✔ *PHP 7 ra đời khá lâu và cộng đồng đủ thời gian để trải nghiệm các cách tổ chức code mới mẻ
 
-✔ *khả năng chịu tải tốt hơn, thời gian load trang cũng cải thiện đáng kể.*
+✔ *khả năng chịu tải tốt hơn,✔  thời gian load trang cũng cải thiện đáng kể.*
 
-✔ *Đặc biệt nếu bạn nâng cấp PHP 5.x sang PHP 7.x, tốc độ load của WordPress được cải thiện đáng kể.*
+✔ *Đặc biệt nếu bạn nâng cấp PHP 5.x sang PHP 7.x, tốc độ load của WordPress được cải thiện đáng kể. ✔ *
 
-✔ *Nói chung phiên bản PHP 7 trở về sau tốt hơn rất nhiều so với phiên bản PHP 5.6*
+✔ *Nói chung phiên bản PHP 7 trở về sau tốt hơn rất nhiều so với phiên bản PHP 5.6 ✔✔✔ *
 
 ### `Ưu điểm khi nâng cấp PHP 7`
 
 - **So với PHP 5 thì khi nâng cấp PHP 7 với nhiều ưu điểm nổi trội ở phiên bản này như là:**
 
-- Giới hạn xử lý requests của PHP 7 là gấp đôi PHP 5.6, và nó đáp ứng từng request nhanh hơn.
+- Giới hạn xử lý requests của PHP 7 là gấp đôi PHP 5.6,🚗 🚗 và nó đáp ứng từng request nhanh hơn.
 
-- Trong xử lý dữ liệu, PHP 7 là hơn 3,5 lần bộ nhớ hiệu quả hơn so với PHP 5.6.
+- Trong xử lý dữ liệu, PHP 7 là hơn 3,5  lần bộ nhớ 🎞🎞 hiệu quả hơn so với PHP 5.6.
 
-- Nhiều cộng đồng được thành lập, có thể giúp các nhà phát triển, xử lý sự cố PHP và hỗ trợ một số kỹ thuật khác.
+- Nhiều cộng đồng được thành lập, có thể giúp các nhà phát triển, xử lý sự cố PHP và hỗ trợ một số kỹ thuật khác 😎😎.
 
-### Ok Vào việc
+
+## Làm việc với 1 số file sau đây 🛴🛴 
+
+### `php-fpm.con` :💥 Cấu hình extensiton php-fpm cho webserver
+
+### `/etc/php/7.2/fpm/pool.d/*.conf`: 💥 thì pool.d chứa conf site mặc định là `www.conf`
+
+
+- *Kiểu giống Vhost nginx*
+
+### 💥 phpscrips và webserver nginx sẽ giao tiếp với nhau qua: - TCP socket & File socket 
+
+-  *tiến trình php-fpm và process nginx độc lập và ko giao tiếp đc nên cần có 1 thằng ở giữa là tcp socket hoặc file socket**
+  
+              
+              
+              
+              
+
+## 😎😎 Ok Vào việc ✈✈❤
 
 - Cài đặt và nâng cấp PHP 7 trên CentOS
 
@@ -51,7 +70,7 @@ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ```
 
-- Đăng nhập máy chủ của bạn để cài đặt yum-utils & bật kho lưu trữ EPEL. Nó cần thiết cho việc upgrade hay cài đặt của các bước sau.
+- Đăng nhập máy chủ của bạn để cài đặt yum-utils & bật kho lưu trữ EPEL. 💻 Nó cần thiết cho việc upgrade hay cài đặt của các bước sau.
 
 ```
 yum install epel-release yum-utils -y
@@ -71,20 +90,19 @@ yum --enablerepo=remi-php70 install php-xml php-soap php-xmlrpc php-mbstring php
 
 ```
 
-- Để định cấu hình kho lưu trữ PHP 7.x bạn sử dụng các câu lệnh dưới đây:
+- Để định cấu hình kho lưu trữ PHP 7.x bạn sử dụng các câu lệnh dưới đây 🐟🐟🐟  
 
 ```
 # PHP 7.0 
-yum-config-manager --enable remi-php70
-
-# PHP 7.1 
-yum-config-manager --enable remi-php71
+yum-config-manager --enable remi-php70  🐬
+# PHP 7.1  
+yum-config-manager --enable remi-php71  🐬
 
 # PHP 7.2 
-yum-config-manager --enable remi-php72
+yum-config-manager --enable remi-php72  🐬
 
 # PHP 7.3 
-yum-config-manager --enable remi-php73
+yum-config-manager --enable remi-php73   🐬
 ```
 
 
@@ -104,8 +122,8 @@ yum-config-manager --disable remi-php55
 yum-config-manager --disable remi-php56
 ```
 
-- Cài đặt PHP Modules
-
+- Cài đặt PHP Modules 🏃‍♂️
+🏃‍♂️
 - Sau khi đã cài đặt PHP 7x trên server. Bạn có thể cài đặt thêm một số PHP Modules cần thiết cho các ứng dụng:
 
 ```
@@ -122,7 +140,7 @@ yum --enablerepo=remi-php71 install php-xml php-soap php-xmlrpc php-mbstring php
 yum --enablerepo=remi-php70 install php-xml php-soap php-xmlrpc php-mbstring php-json php-gd php-mcrypt
 ```
 
-- Ngoài ra, bạn có thể tìm Modules có sẵn trong yum repository với lệnh như sau:
+- Ngoài ra, bạn có thể tìm Modules có sẵn trong yum repository 🖥🖥   với lệnh như sau:
 
 ```
 # yum --enablerepo=remi-php73 search php | grep php73 [For PHP 7.3]
@@ -145,7 +163,7 @@ yum --enablerepo=remi-php70 install php-xml php-soap php-xmlrpc php-mbstring php
  
  **Chỉnh file về `user, group` nginx và phần location như kia là được**
  
- ### B3: Vào file config của website Nginx thêm 1 vài thông số để web enable tính năng PHP-FPM
+ ### B3: Vào file config của website Nginx `thêm 1 vài thông số để web enable tính năng PHP-FPM` 🛠🛠
  
  ```
  vi /etc/nginx/conf.d/web2.conf
@@ -157,7 +175,7 @@ yum --enablerepo=remi-php70 install php-xml php-soap php-xmlrpc php-mbstring php
 
 **Chỉnh như file là được**
 
-### B4: Tạo index.php để trình PHP scripts đọc file
+### B4: Tạo `index.php` để trình PHP scripts đọc file 
 
 ```
 vi /usr/share/nginx/web2/index.php
@@ -184,7 +202,7 @@ echo <h1> hello php </h1>
  
  
  
- ### *Lưu ý:*
+ ### ❗ `*Lưu ý:*`
  
  - Lỗi xảy ra trong bài
 
@@ -196,3 +214,4 @@ echo <h1> hello php </h1>
 
 ![image](https://user-images.githubusercontent.com/83824403/162789745-139ae164-0537-4562-bd65-a1156d15322a.png)
 
+### `Referrence: https://blog.cloud365.vn/linux/huong-dan-tao-virtualhost-trong-nginx/` 🔑🔑
